@@ -1,5 +1,6 @@
 package io.github.brunoyillli.clientes.rest;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -64,5 +65,10 @@ public class ClienteController {
 				return repository.save(cliente);
 			})
 			.orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado"));
+	}
+	
+	@GetMapping
+	public List<Cliente> obterTodos(){
+		return repository.findAll();
 	}
 }
