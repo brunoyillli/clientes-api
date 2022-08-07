@@ -9,7 +9,7 @@ import java.time.LocalDate;
 
 @Entity
 @Data
-public class Servico {
+public class ServicoPrestado {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,4 +28,5 @@ public class Servico {
     @Column
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate data;
+    
 }
