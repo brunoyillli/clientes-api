@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import io.github.brunoyillli.clientes.model.entity.Usuario;
 import io.github.brunoyillli.clientes.model.repository.UsuarioRepository;
+import io.github.brunoyillli.clientes.service.exception.UsuarioCadastradoException;
 
 @Service
 public class UsuarioService implements UserDetailsService {
@@ -25,6 +26,15 @@ public class UsuarioService implements UserDetailsService {
 				.password(usuario.getPassword())
 				.roles("USER")
 				.build();
+	}
+
+	public Usuario salvar(Usuario usuario) {
+		boolean exists = repository.existsByUsername(usuario.getUsername());
+		if( exists ) {
+			throw new UsuarioCadastradoException(usuario.getUsername());
+		}
+		return repository.save(usuario);
+		
 	}
 
 }
