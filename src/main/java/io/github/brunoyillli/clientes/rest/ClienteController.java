@@ -65,7 +65,7 @@ public class ClienteController {
 			.orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado"));
 	}
 	
-	@GetMapping
+	@GetMapping	
 	public List<Cliente> obterTodos(){
 		return repository.findAll();
 	}
